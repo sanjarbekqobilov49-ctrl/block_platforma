@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Blog Platforma
 
 Mini-ijtimoiy tarmoq ko'rinishidagi blog platformasi. Foydalanuvchilar post joylaydi, izoh qoldiradi, like bosadi va profillariga kiradi.
@@ -63,3 +64,7 @@ blog_project/
  ├─ media/          # Yuklangan rasmlar
  └─ manage.py
 ```
+=======
+# block_platforma
+Mini-ijtimoiy tarmoq ko'rinishidagi blog platformasi. Foydalanuvchilar post joylaydi, izoh qoldiradi, like bosadi va profillariga kiradi.
+>>>>>>> 3cc6e8f38337b24567f8b35db8ad5b0fbc554a7a

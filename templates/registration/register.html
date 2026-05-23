@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Ro'yxatdan o'tish</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Xatolik:</strong> Iltimos, quyidagi xatolarni tuzating.
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label">Foydalanuvchi nomi</label>
+                        <input type="text" name="username" class="form-control" id="id_username" maxlength="150" required>
+                        <div class="form-text">150 belgidan oshmasligi kerak. Harflar, raqamlar va @/./+/-/_ belgilari.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_password1" class="form-label">Parol</label>
+                        <input type="password" name="password1" class="form-control" id="id_password1" required>
+                        <div class="form-text">Kamida 8 belgi. Raqam va harf bo'lishi kerak.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_password2" class="form-label">Parolni tasdiqlang</label>
+                        <input type="password" name="password2" class="form-control" id="id_password2" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Ro'yxatdan o'tish</button>
+                </form>
+                <p class="mt-3 text-center">Hisobingiz bormi? <a href="{% url 'login' %}">Kirish</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

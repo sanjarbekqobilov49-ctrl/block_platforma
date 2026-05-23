@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <form method="GET" action="{% url 'home_page' %}" class="d-flex">
+            <input class="form-control me-2" type="search" name="q" placeholder="Qidirish..." value="{{ query }}">
+            <button class="btn btn-outline-success" type="submit">Qidirish</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    {% for post in posts %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="width:100%; height:220px; object-fit:contain; background:#fff;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                    <p class="text-muted small">
+                        {{ post.author.username }} | {{ post.created_at|date:"d.m.Y" }} |
+                        👍 {{ post.like_count }} | 💬 {{ post.comment_count }} | 👁 {{ post.views_count }}
+                    </p>
+                    <a href="{% url 'post_detail' post.id %}" class="btn btn-primary">O'qish</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col"><p class="text-muted">Hozircha postlar mavjud emas.</p></div>
+    {% endfor %}
+</div>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+        {% endif %}
+        {% if posts.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
